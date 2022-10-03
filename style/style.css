@@ -1,3 +1,7 @@
 .results_container {
     display: none;
 }
+
+.form_container {
+    display: block;
+}

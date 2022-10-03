@@ -9,14 +9,14 @@
 </head>
 <body>
     <div class="background">
-        <div class="form_container">
+        <div class="form_container" id="form_container">
             <div class="description">
                 <h1>Titulo</h1>
                 <p>Lorem ipsum dolor sit amet</p>
             </div>
             <!-- Formulario -->
             <div class="form">
-                <form method="post" class="contacto_form">
+                <form method="post">
                     <!-- Ingreso del monto a pagar (sin impuestos) -->
                     <label for="form_nombre">Introducir precio: $</label>
                     <input name="form_precio" id="form_precio" type="number" placeholder="0.00" step="0.01" min="0" /><br>
@@ -27,12 +27,12 @@
                     <input type="radio" id="radio_dolar" name="divisa" value="dolar">
                     <label for="radio_dolar">USD</label><br>
                     <!-- Botón de envío -->
-                    <input type="button" value="Calcular" class="submit_button" />
+                    <input type="button" id="btn" value="Calcular" class="button" onclick="changeDisplay('results_container', 'block'); changeDisplay('form_container', 'none');" />
                 </form>
             </div>
         </div>
 
-        <div class="results_container">
+        <div class="results_container" id="results_container">
             <div class="results">
                 <h2>Precio final: </h1>
                 <h3>Total impuestos: </h3>
@@ -40,6 +40,7 @@
                 <p>IVA (21%): AR$</p>
                 <p>Impuesto país (8%): AR$</p>    
             </div>
+            <input type="button" id="btn" value="Volver atrás" class="button" onclick="changeDisplay('results_container', 'none'); changeDisplay('form_container', 'block');" />
         </div>
 
     </div>
