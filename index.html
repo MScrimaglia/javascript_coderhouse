@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style/style.css">
+    <title>Calculadora impositiva</title>
+</head>
+<body>
+    <div class="background">
+        <div class="form_container">
+            <div class="description">
+                <h1>Titulo</h1>
+                <p>Lorem ipsum dolor sit amet</p>
+            </div>
+        </div>
+        <!-- Formulario -->
+        <div class="form">
+            <form method="post" class="contacto_form">
+                <!-- Ingreso del monto a pagar (sin impuestos) -->
+                <label for="form_nombre">Introducir precio: $</label>
+                <input name="form_precio" id="form_precio" type="number" placeholder="0.00" step="0.01" min="0" /><br>
+                <p>Divisa:</p>
+                <!-- Seleccion de divisa ingresada -->
+                <input type="radio" id="radio_pesos" name="divisa" value="pesos" checked="checked">
+                <label for="radio_pesos">ARS</label><br>
+                <input type="radio" id="radio_dolar" name="divisa" value="dolar">
+                <label for="radio_dolar">USD</label><br>
+                <!-- Botón de envío -->
+                <input type="submit" value="Calcular" class="submit_button" />
+            </form>
+        </div>
+    </div>
+
+    <script src="myScript.js"></script>
+</body>
+</html>
