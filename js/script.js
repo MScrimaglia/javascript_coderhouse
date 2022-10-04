@@ -10,7 +10,13 @@ function precioImpuesto(precio, impuesto){
         PAIS: 0.08
     };
 
-    return impuestos[impuesto] * precio;
+    return (impuestos[impuesto] * precio);
+}
+
+function conversor(precio){
+    const VALOR_DOLAR = 154;
+
+    return (precio * VALOR_DOLAR);
 }
 
 function getValues(precio, porcentaje){
@@ -24,16 +30,29 @@ function getValues(precio, porcentaje){
 
     for (let prop in precios){
         if (prop == porcentaje) {
-            return parseInt(precios[prop]);
+            return (parseFloat(precios[prop]).toFixed(2));
         }
     }
 }
 
 function displayValues (){
-    let precio = parseInt(document.getElementById("form_precio").value);
+    let precio = parseFloat(document.getElementById("form_precio").value).toFixed(2);
+
+    if (document.getElementById("radio_dolar").checked === true){
+        precio = conversor(precio);
+    }
+
     document.getElementById("monto_final").append(getValues(precio, "precio_final"));
     document.getElementById("monto_impuestos").append(getValues(precio, "precio_impuestos"));
     document.getElementById("monto_afip").append(getValues(precio, "precio_afip"));
     document.getElementById("monto_iva").append(getValues(precio, "precio_iva"));
     document.getElementById("monto_pais").append(getValues(precio, "precio_pais"));
+}
+
+function restartDisplayValues(){
+    document.getElementById("monto_final").innerText = "Precio final: AR$";
+    document.getElementById("monto_impuestos").innerText = "Total impuestos: AR$";
+    document.getElementById("monto_afip").innerText = "Percepción impuesto RG AFIP 4815 (45%): AR$";
+    document.getElementById("monto_iva").innerText = "IVA (21%): AR$";
+    document.getElementById("monto_pais").innerText = "Impuesto país (8%): AR$";
 }
