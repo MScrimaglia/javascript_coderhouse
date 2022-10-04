@@ -16,7 +16,7 @@
             </div>
             <!-- Formulario -->
             <div class="form">
-                <form method="post">
+                <form>
                     <!-- Ingreso del monto a pagar (sin impuestos) -->
                     <label for="form_precio">Introducir precio: $</label>
                     <input name="form_precio" id="form_precio" type="number" placeholder="0.00" step="0.01" min="0" /><br>
@@ -44,14 +44,16 @@
         <!-- Valores finales, inicialmente ocultos -->
         <div class="main_container" id="results_container">
             <div class="results">
-                <h2 id="monto_final">Precio final: AR$</h1>
-                <h3 id="monto_impuestos">Total impuestos: AR$</h3>
-                <p id="monto_afip">Percepción impuesto RG AFIP 4815 (45%): AR$</p>
+                <h1 id="monto_final">Precio final: AR$</h1>
+                <p id="monto_afip">RG AFIP 4815 (45%): AR$</p>
                 <p id="monto_iva">IVA (21%): AR$</p>
-                <p id="monto_pais">Impuesto país (8%): AR$</p>    
+                <p id="monto_pais">Impuesto país (8%): AR$</p>
+                <h3 id="monto_impuestos">Total impuestos: AR$</h3>    
             </div>
-            <!-- Al presionar el botón se llama a las funciones changeDisplay y restartDisplayValues -->
-            <input type="button" id="btn" value="Volver atrás" class="button" onclick="changeDisplay('results_container', 'none'); changeDisplay('form_container', 'flex'); restartDisplayValues();" />
+            <div class="btn_container">
+                <!-- Al presionar el botón se llama a las funciones changeDisplay y restartDisplayValues -->
+                <input type="button" id="btn_return" value="Volver atrás" class="button" onclick="changeDisplay('results_container', 'none'); changeDisplay('form_container', 'flex'); restartDisplayValues();" />
+            </div>
         </div>
 
     </div>
