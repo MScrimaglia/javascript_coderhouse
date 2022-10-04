@@ -1,7 +1,56 @@
-.results_container {
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#results_container {
     display: none;
 }
 
-.form_container {
-    display: block;
+.background {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.main_container{
+    background-color: rgb(131, 131, 131);
+    width: 450px;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.description {
+    text-align: center;
+}
+
+form {
+    margin-bottom: 60px;
+}
+
+.radio_form{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0 15%;
+}
+
+.btn_container {
+    display: flex;
+    justify-content: center;
+}
+
+.button {
+    width: 150px;
+    height: 40px;
+    border: 1px solid black;
+    font-size: 16px;
+    transition: 0.2s;
+}
+
+.button:hover {
+    background-color: black;
+    color: white;
 }
