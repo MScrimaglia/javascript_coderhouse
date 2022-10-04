@@ -10,10 +10,10 @@ function precioImpuesto(precio, impuesto){
         PAIS: 0.08
     };
 
-    return precio * impuestos[impuesto];
+    return impuestos[impuesto] * precio;
 }
 
-function printValues(precio, porcentaje){
+function getValues(precio, porcentaje){
     let precios = {
         precio_afip: precioImpuesto(precio, 'AFIP'),
         precio_iva: precioImpuesto(precio, 'IVA'),
@@ -24,7 +24,16 @@ function printValues(precio, porcentaje){
 
     for (let prop in precios){
         if (prop == porcentaje) {
-            return precios[prop];
+            return parseInt(precios[prop]);
         }
     }
+}
+
+function displayValues (){
+    let precio = parseInt(document.getElementById("form_precio").value);
+    document.getElementById("monto_final").append(getValues(precio, "precio_final"));
+    document.getElementById("monto_impuestos").append(getValues(precio, "precio_impuestos"));
+    document.getElementById("monto_afip").append(getValues(precio, "precio_afip"));
+    document.getElementById("monto_iva").append(getValues(precio, "precio_iva"));
+    document.getElementById("monto_pais").append(getValues(precio, "precio_pais"));
 }
