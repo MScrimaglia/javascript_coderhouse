@@ -62,11 +62,11 @@ function displayValues (){
     }
 
     // Se añaden al texto los valores, calculados por la función getValues
-    document.getElementById("monto_final").append(getValues(precio, "precio_final"));
-    document.getElementById("monto_impuestos").append(getValues(precio, "precio_impuestos"));
-    document.getElementById("monto_afip").append(getValues(precio, "precio_afip"));
-    document.getElementById("monto_iva").append(getValues(precio, "precio_iva"));
-    document.getElementById("monto_pais").append(getValues(precio, "precio_pais"));
+    document.getElementById("monto_final").append(parseFloat(getValues(precio, "precio_final")).toLocaleString('en'));
+    document.getElementById("monto_impuestos").append(parseFloat(getValues(precio, "precio_impuestos")).toLocaleString('en'));
+    document.getElementById("monto_afip").append(parseFloat(getValues(precio, "precio_afip")).toLocaleString('en'));
+    document.getElementById("monto_iva").append(parseFloat(getValues(precio, "precio_iva")).toLocaleString('en'));
+    document.getElementById("monto_pais").append(parseFloat(getValues(precio, "precio_pais")).toLocaleString('en'));
 }
 
 function restartDisplayValues(){
