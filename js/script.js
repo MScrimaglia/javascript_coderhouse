@@ -61,9 +61,9 @@ function displayValues (){
         precio = conversor(precio);
     }
 
-    let valueDisplayGen = (texto, categoria) => document.getElementById(texto).append(parseFloat(getValues(precio, categoria)).toFixed(2).toLocaleString('en'));
-
     // Se añaden al texto los valores, calculados por la función getValues
+    let valueDisplayGen = (texto, categoria) => document.getElementById(texto).append(parseFloat(getValues(precio, categoria)).toFixed(2).toLocaleString('en'));
+    
     valueDisplayGen("monto_final", "precio_final");
     valueDisplayGen("monto_impuestos", "precio_impuestos");
     valueDisplayGen("monto_afip", "precio_afip");
