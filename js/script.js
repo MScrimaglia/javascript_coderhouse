@@ -18,7 +18,7 @@ function precioImpuesto(precio, impuesto){
 
 function conversor(precio){
     // Se establece manualmente el tipo de cambio actual
-    const VALOR_DOLAR = 154;
+    const VALOR_DOLAR = 155;
 
     // // Devuelve el valor en AR$
     return (precio * VALOR_DOLAR);
@@ -61,12 +61,14 @@ function displayValues (){
         precio = conversor(precio);
     }
 
+    let valueDisplayGen = (texto, categoria) => document.getElementById(texto).append(parseFloat(getValues(precio, categoria)).toFixed(2).toLocaleString('en'));
+
     // Se añaden al texto los valores, calculados por la función getValues
-    document.getElementById("monto_final").append(parseFloat(getValues(precio, "precio_final")).toFixed(2).toLocaleString('en'));
-    document.getElementById("monto_impuestos").append(parseFloat(getValues(precio, "precio_impuestos")).toFixed(2).toLocaleString('en'));
-    document.getElementById("monto_afip").append(parseFloat(getValues(precio, "precio_afip")).toFixed(2).toLocaleString('en'));
-    document.getElementById("monto_iva").append(parseFloat(getValues(precio, "precio_iva")).toFixed(2).toLocaleString('en'));
-    document.getElementById("monto_pais").append(parseFloat(getValues(precio, "precio_pais")).toFixed(2).toLocaleString('en'));
+    valueDisplayGen("monto_final", "precio_final");
+    valueDisplayGen("monto_impuestos", "precio_impuestos");
+    valueDisplayGen("monto_afip", "precio_afip");
+    valueDisplayGen("monto_iva", "precio_iva");
+    valueDisplayGen("monto_pais", "precio_pais");
 }
 
 function restartDisplayValues(){
