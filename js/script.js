@@ -77,3 +77,9 @@ function restartDisplayValues(){
     document.getElementById("monto_iva").innerText = "IVA (21%): AR$";
     document.getElementById("monto_pais").innerText = "Impuesto país (8%): AR$";
 }
+
+function formSubmit(){
+    changeDisplay('form_container', 'none'); 
+    displayValues();
+    changeDisplay('results_container', 'flex'); 
+}

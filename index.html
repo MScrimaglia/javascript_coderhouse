@@ -16,7 +16,8 @@
             </div>
             <!-- Formulario -->
             <div class="form">
-                <form>
+                <!-- Evita que la pagina se reincie al enviar el formulario con return false -->
+                <form onsubmit="formSubmit(); return false">
                     <!-- Ingreso del monto a pagar (sin impuestos) -->
                     <label for="form_precio">Introducir precio: $</label>
                     <input name="form_precio" id="form_precio" type="number" placeholder="0.00" step="0.01" min="0" /><br>
@@ -35,7 +36,7 @@
                     <!-- Botón de envío -->
                     <div class="btn_container">
                         <!-- Al presionar el botón se llama a las funciones changeDisplay y displayValues -->
-                        <input type="button" id="btn" value="Calcular" class="button" onclick="changeDisplay('results_container', 'flex'); changeDisplay('form_container', 'none'); displayValues();" />
+                        <input type="submit" id="btn" value="Calcular" class="button" />
                     </div>
                 </form>
             </div>
