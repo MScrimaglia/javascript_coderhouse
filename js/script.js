@@ -62,13 +62,14 @@ function displayValues (){
     }
 
     // Se añaden al texto los valores, calculados por la función getValues
-    let valueDisplayGen = (texto, categoria) => document.getElementById(texto).append(parseFloat(getValues(precio, categoria)).toFixed(2).toLocaleString('en'));
-    
+    let valueDisplayGen = (texto, categoria) => document.getElementById(texto).append(parseFloat(getValues(precio, categoria)).toLocaleString('en', {minimumFractionDigits: 2}));
+
     valueDisplayGen("monto_final", "precio_final");
     valueDisplayGen("monto_impuestos", "precio_impuestos");
     valueDisplayGen("monto_afip", "precio_afip");
     valueDisplayGen("monto_iva", "precio_iva");
     valueDisplayGen("monto_pais", "precio_pais");
+
 }
 
 function restartDisplayValues(){
