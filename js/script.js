@@ -101,3 +101,10 @@ function formSubmit(){
     displayValues();
     changeDisplay('results_container', 'flex'); 
 }
+
+document.getElementById("btn_return").addEventListener("click", () => {
+    changeDisplay('results_container', 'none'); 
+    changeDisplay('form_container', 'flex');
+    restartDisplayValues();
+})
+
