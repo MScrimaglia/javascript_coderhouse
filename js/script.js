@@ -29,7 +29,7 @@ function getValues(precio, porcentaje){
     // Se transforma al dato de entrada en float
     precio = parseFloat(precio);
 
-    // Objeto donde se guarda cada precio conseguido con la función precioImpuesto
+    // Se guarda cada precio conseguido con la función precioImpuesto
     let precios = {
         precio_afip: precioImpuesto(precio, 'AFIP'),
         precio_iva: precioImpuesto(precio, 'IVA'),
@@ -61,28 +61,39 @@ function displayValues (){
         precio = conversor(precio);
     }
 
+    let categorias = ["final", "impuestos", "afip", "iva", "pais"];
+
     // Se añaden al texto los valores, calculados por la función getValues
     let valueDisplayGen = (texto, categoria) => document.getElementById(texto).append(parseFloat(getValues(precio, categoria)).toLocaleString('en', {minimumFractionDigits: 2}));
 
-    valueDisplayGen("monto_final", "precio_final");
-    valueDisplayGen("monto_impuestos", "precio_impuestos");
-    valueDisplayGen("monto_afip", "precio_afip");
-    valueDisplayGen("monto_iva", "precio_iva");
-    valueDisplayGen("monto_pais", "precio_pais");
+    // Se ejecuta la funcion valueDisplayGen para cada texto a cambiar
+    for (let categ of categorias) {
+        let monto_categ = "monto_" + categ;
+        let precio_categ = "precio_" + categ;
+
+        valueDisplayGen(monto_categ, precio_categ);
+    }
 
 }
 
 function restartDisplayValues(){
     // Reemplaza los textos por el texto inicial
+
     function changeText(id, text) {
         document.getElementById(id).innerText = text;
     }
 
-    changeText("monto_final", "Precio final: AR$");
-    changeText("monto_impuestos", "Total impuestos: AR$");
-    changeText("monto_afip", "Percepción impuesto RG AFIP 4815 (45%): AR$");
-    changeText("monto_iva", "IVA (21%): AR$");
-    changeText("monto_pais", "Impuesto país (8%): AR$");
+    let textIDs = ["monto_final", "monto_impuestos", "monto_afip", "monto_iva", "monto_pais"]
+    let textValues = ["Precio final: AR$", "Total impuestos: AR$", "Percepción impuesto RG AFIP 4815 (45%): AR$", "IVA (21%): AR$", "Impuesto país (8%): AR$"]
+
+    // Se ejecuta la funcion por cada texto a reiniciar
+    for (let textID of textIDs) {
+        let current_index = textIDs.findIndex(x => x == textID);
+        let text_value = textValues[current_index];
+
+        changeText(textID, text_value);
+    }
+
 }
 
 function formSubmit(){
