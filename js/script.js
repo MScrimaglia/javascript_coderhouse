@@ -74,11 +74,15 @@ function displayValues (){
 
 function restartDisplayValues(){
     // Reemplaza los textos por el texto inicial
-    document.getElementById("monto_final").innerText = "Precio final: AR$";
-    document.getElementById("monto_impuestos").innerText = "Total impuestos: AR$";
-    document.getElementById("monto_afip").innerText = "Percepción impuesto RG AFIP 4815 (45%): AR$";
-    document.getElementById("monto_iva").innerText = "IVA (21%): AR$";
-    document.getElementById("monto_pais").innerText = "Impuesto país (8%): AR$";
+    function changeText(id, text) {
+        document.getElementById(id).innerText = text;
+    }
+
+    changeText("monto_final", "Precio final: AR$");
+    changeText("monto_impuestos", "Total impuestos: AR$");
+    changeText("monto_afip", "Percepción impuesto RG AFIP 4815 (45%): AR$");
+    changeText("monto_iva", "IVA (21%): AR$");
+    changeText("monto_pais", "Impuesto país (8%): AR$");
 }
 
 function formSubmit(){
