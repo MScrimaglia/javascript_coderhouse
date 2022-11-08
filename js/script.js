@@ -18,7 +18,7 @@ function precioImpuesto(precio, impuesto){
 
 function conversor(precio){
     // Se establece manualmente el tipo de cambio actual
-    const VALOR_DOLAR = 155;
+    const VALOR_DOLAR = 159;
 
     // // Devuelve el valor en AR$
     return (precio * VALOR_DOLAR);
@@ -84,7 +84,7 @@ function restartDisplayValues(){
     }
 
     let textIDs = ["monto_final", "monto_impuestos", "monto_afip", "monto_iva", "monto_pais"]
-    let textValues = ["Precio final: AR$", "Total impuestos: AR$", "Percepción impuesto RG AFIP 4815 (45%): AR$", "IVA (21%): AR$", "Impuesto país (8%): AR$"]
+    let textValues = ["Precio final: AR$", "Total impuestos: AR$", "-Percepción impuesto RG AFIP 4815 (45%): AR$", "-IVA (21%): AR$", "-Impuesto país (8%): AR$"]
 
     // Se ejecuta la funcion por cada texto a reiniciar
     for (let textID of textIDs) {
