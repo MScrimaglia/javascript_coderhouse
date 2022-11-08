@@ -80,6 +80,17 @@ form {
     border-radius: 10px;
 }
 
+.lista_impuestos {
+    background-color: #a5a2a2;
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    row-gap: 20px;
+    margin-top: 60px;
+}
+
 #monto_impuestos {
     font-size: 24px;
 }
