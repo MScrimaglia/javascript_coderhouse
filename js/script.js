@@ -83,16 +83,18 @@ function displayValues (){
     // Se agrega el objeto compra al sessionStorage
     sessionStorage.setItem(sessionStorage.length, JSON.stringify(compra));
 
+    completeTable();
+
 }
 
 function changeDisplayValues(textIDs, textValues){
-    // Recibe dos arrays como argumentos, 
+    // Recibe dos arrays como argumentos, asignando los valores del segundo arg a los textos con los IDs del primer arg
 
     function changeText(id, text) {
         document.getElementById(id).innerText = text;
     }
 
-    // Se ejecuta la funcion por cada texto a reiniciar
+    // Se ejecuta la funcion por cada texto a cambiar
     for (let textID of textIDs) {
         let current_index = textIDs.findIndex(x => x == textID);
         let text_value = textValues[current_index];
@@ -102,10 +104,21 @@ function changeDisplayValues(textIDs, textValues){
 
 }
 
+
+
+function completeTable(){
+    let tb = document.getElementById("compras_tb_body");
+
+    for (let i = 0; i < sessionStorage.length; i++) {
+        let compra = JSON.parse(sessionStorage.getItem(i));
+        tb.innerHTML += "<tr><td>" + 'Compra ' + (i + 1) + "</td><td>" + ((parseInt(compra.final) - parseInt(compra.impuestos)).toString()) + "</td><td>" + compra.impuestos + "</td><td>" + compra.final + "</td></tr>";
+    }
+}
+
 function formSubmit(){
     changeDisplay('form_container', 'none'); 
     displayValues();
-    changeDisplay('results_container', 'flex'); 
+    changeDisplay('results_container', 'flex');
 }
 
 document.getElementById("btn_return").addEventListener("click", () => {
