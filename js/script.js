@@ -57,7 +57,7 @@ function displayValues (){
     }
 
     // Si se seleccionó el dólar como divisa se ejecuta la función conversor 
-    if (document.getElementById("radio_dolar").checked === true){
+    if (document.getElementById("radio_dolar").checked){
         precio = conversor(precio);
     }
 
@@ -66,13 +66,22 @@ function displayValues (){
     // Se añaden al texto los valores, calculados por la función getValues
     let valueDisplayGen = (texto, categoria) => document.getElementById(texto).append(parseFloat(getValues(precio, categoria)).toLocaleString('en', {minimumFractionDigits: 2}));
 
+    // Se crea el objeto compra, donde se registran los datos de la compra actual para luego guardar en SessionStorage
+    let compra = {};
+
     // Se ejecuta la funcion valueDisplayGen para cada texto a cambiar
     for (let categ of categorias) {
         let monto_categ = "monto_" + categ;
         let precio_categ = "precio_" + categ;
 
         valueDisplayGen(monto_categ, precio_categ);
+
+        // Se agrega al objeto compra una key por cada categoria y su valor correspondiente
+        compra[categ] = getValues(precio, precio_categ);
     }
+
+    // Se agrega el objeto compra al sessionStorage
+    sessionStorage.setItem(sessionStorage.length, JSON.stringify(compra));
 
 }
 
