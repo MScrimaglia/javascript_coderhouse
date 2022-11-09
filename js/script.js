@@ -85,15 +85,12 @@ function displayValues (){
 
 }
 
-function restartDisplayValues(){
-    // Reemplaza los textos por el texto inicial
+function changeDisplayValues(textIDs, textValues){
+    // Recibe dos arrays como argumentos, 
 
     function changeText(id, text) {
         document.getElementById(id).innerText = text;
     }
-
-    let textIDs = ["monto_final", "monto_impuestos", "monto_afip", "monto_iva", "monto_pais"]
-    let textValues = ["Precio final: AR$", "Total impuestos: AR$", "-Percepción impuesto RG AFIP 4815 (45%): AR$", "-IVA (21%): AR$", "-Impuesto país (8%): AR$"]
 
     // Se ejecuta la funcion por cada texto a reiniciar
     for (let textID of textIDs) {
@@ -114,6 +111,8 @@ function formSubmit(){
 document.getElementById("btn_return").addEventListener("click", () => {
     changeDisplay('results_container', 'none'); 
     changeDisplay('form_container', 'flex');
-    restartDisplayValues();
+    let textIDs = ["monto_final", "monto_impuestos", "monto_afip", "monto_iva", "monto_pais"]
+    let textValues = ["Precio final: AR$", "Total impuestos: AR$", "-Percepción impuesto RG AFIP 4815 (45%): AR$", "-IVA (21%): AR$", "-Impuesto país (8%): AR$"]
+    changeDisplayValues(textIDs, textValues);
 })
 
