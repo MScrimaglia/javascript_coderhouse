@@ -107,7 +107,9 @@ function changeDisplayValues(textIDs, textValues){
 
 
 function completeTable(){
+
     let tb = document.getElementById("compras_tb_body");
+    tb.innerHTML = "";
 
     for (let i = 0; i < sessionStorage.length; i++) {
         let compra = JSON.parse(sessionStorage.getItem(i));
