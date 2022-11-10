@@ -109,15 +109,36 @@ function changeDisplayValues(textIDs, textValues){
 function completeTable(){
 
     let tb = document.getElementById("compras_tb_body");
+    let tb_total = document.getElementById("compras_tb_total_body");
     tb.innerHTML = "<tr><th></th><th>Precio inicial</th><th>Total impuestos</th><th>Precio final</th></tr>";
 
+    let inicial_total = 0;
+    let impuestos_total = 0;
+    let final_total = 0;
+
     for (let i = 0; i < sessionStorage.length; i++) {
+        //obtiene los valores de las compras del sessionStorage y los inserta en la tabla
         let compra = JSON.parse(sessionStorage.getItem(i));
         tb.innerHTML += "<tr><td>" + 'Compra ' + (i + 1) + "</td><td>" + "$" + ((parseInt(compra.final) - parseInt(compra.impuestos)).toString()) + "</td><td>" + "$" + compra.impuestos + "</td><td>" + "$" + compra.final + "</td></tr>";
+
+        //suma los valores obtenidos para calcular el total
+        inicial_total += (parseInt(compra.final) - parseInt(compra.impuestos));
+        impuestos_total += parseInt(compra.impuestos);
+        final_total += parseInt(compra.final);
     }
+
+    tb_total.innerHTML = "<tr><td>" + 'Total: ' + "</td><td>" + "$" + (inicial_total.toString()) + "</td><td>" + "$" + (impuestos_total.toString()) + "</td><td>" + "$" + (final_total.toString()) + "</td></tr>";
+
 }
 
 function formSubmit(){
+    if (sessionStorage.length >= 10) {
+        Toastify({
+            text: "Máximo de compras alcanzado",
+            duration: 3000
+        }).showToast();
+        return;
+    }
     changeDisplay('form_container', 'none'); 
     displayValues();
     changeDisplay('results_container', 'flex');
