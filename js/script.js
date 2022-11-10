@@ -109,11 +109,11 @@ function changeDisplayValues(textIDs, textValues){
 function completeTable(){
 
     let tb = document.getElementById("compras_tb_body");
-    tb.innerHTML = "";
+    tb.innerHTML = "<tr><th></th><th>Precio inicial</th><th>Total impuestos</th><th>Precio final</th></tr>";
 
     for (let i = 0; i < sessionStorage.length; i++) {
         let compra = JSON.parse(sessionStorage.getItem(i));
-        tb.innerHTML += "<tr><td>" + 'Compra ' + (i + 1) + "</td><td>" + ((parseInt(compra.final) - parseInt(compra.impuestos)).toString()) + "</td><td>" + compra.impuestos + "</td><td>" + compra.final + "</td></tr>";
+        tb.innerHTML += "<tr><td>" + 'Compra ' + (i + 1) + "</td><td>" + "$" + ((parseInt(compra.final) - parseInt(compra.impuestos)).toString()) + "</td><td>" + "$" + compra.impuestos + "</td><td>" + "$" + compra.final + "</td></tr>";
     }
 }
 
@@ -121,6 +121,7 @@ function formSubmit(){
     changeDisplay('form_container', 'none'); 
     displayValues();
     changeDisplay('results_container', 'flex');
+    changeDisplay('lista_container', 'flex');
 }
 
 document.getElementById("btn_return").addEventListener("click", () => {
@@ -129,5 +130,13 @@ document.getElementById("btn_return").addEventListener("click", () => {
     let textIDs = ["monto_final", "monto_impuestos", "monto_afip", "monto_iva", "monto_pais"]
     let textValues = ["Precio final: AR$", "Total impuestos: AR$", "-Percepción impuesto RG AFIP 4815 (45%): AR$", "-IVA (21%): AR$", "-Impuesto país (8%): AR$"]
     changeDisplayValues(textIDs, textValues);
-})
+});
 
+document.getElementById("btn_restablecer").addEventListener("click", () => {
+    changeDisplay('lista_container', 'none'); 
+    sessionStorage.clear();
+});
+
+window.addEventListener("load", (event) => {
+    sessionStorage.length == 0 ? changeDisplay('lista_container', 'none') : changeDisplay('lista_container', 'flex'); completeTable();
+});

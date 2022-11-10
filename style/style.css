@@ -3,7 +3,7 @@ body {
     margin: 0;
 }
 
-#results_container {
+#results_container, #lista_container{
     display: none;
 }
 
@@ -100,4 +100,18 @@ form {
     color: rgb(197, 197, 197);
     padding: 20px;
     border-radius: 10px;
+}
+
+.compras_tb {
+    width: 80%;
+    background-color: #a5a2a2;
+    border-radius: 10px;
+}
+
+tr {
+    height: 25px;
+}
+
+td {
+    text-align: center;
 }
