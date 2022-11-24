@@ -7,6 +7,12 @@ body {
     display: none;
 }
 
+#final_total {
+    background-color: #1a1b23;
+    color: rgb(197, 197, 197);
+    border-radius: 10px;
+}
+
 .background {
     height: 100vh;
     display: flex;
@@ -110,8 +116,10 @@ form {
 
 tr {
     height: 25px;
+    table-layout: fixed;
 }
 
 td {
     text-align: center;
+    width: 25%;
 }

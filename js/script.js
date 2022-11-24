@@ -16,14 +16,6 @@ function precioImpuesto(precio, impuesto){
     return (impuestos[impuesto] * precio);
 }
 
-function conversor(precio){
-    // Se establece manualmente el tipo de cambio actual
-    const VALOR_DOLAR = 159;
-
-    // // Devuelve el valor en AR$
-    return (precio * VALOR_DOLAR);
-}
-
 function getValues(precio, porcentaje){
 
     // Se transforma al dato de entrada en float
@@ -119,7 +111,7 @@ function completeTable(){
     for (let i = 0; i < sessionStorage.length; i++) {
         //obtiene los valores de las compras del sessionStorage y los inserta en la tabla
         let compra = JSON.parse(sessionStorage.getItem(i));
-        tb.innerHTML += "<tr><td>" + 'Compra ' + (i + 1) + "</td><td>" + "$" + ((parseInt(compra.final) - parseInt(compra.impuestos)).toString()) + "</td><td>" + "$" + compra.impuestos + "</td><td>" + "$" + compra.final + "</td></tr>";
+        tb.innerHTML += "<tr><td>" + 'Compra ' + (i + 1) + "</td><td>" + "$" + ((parseInt(compra.final) - parseInt(compra.impuestos)).toLocaleString('en', {minimumFractionDigits: 2})) + "</td><td>" + "$" + (compra.impuestos).toLocaleString('en', {minimumFractionDigits: 2}) + "</td><td>" + "$" + (compra.final).toLocaleString('en', {minimumFractionDigits: 2}) + "</td></tr>";
 
         //suma los valores obtenidos para calcular el total
         inicial_total += (parseInt(compra.final) - parseInt(compra.impuestos));
@@ -127,11 +119,12 @@ function completeTable(){
         final_total += parseInt(compra.final);
     }
 
-    tb_total.innerHTML = "<tr><td>" + 'Total: ' + "</td><td>" + "$" + (inicial_total.toString()) + "</td><td>" + "$" + (impuestos_total.toString()) + "</td><td>" + "$" + (final_total.toString()) + "</td></tr>";
+    tb_total.innerHTML = "<tr><td>" + 'Total: ' + "</td><td>" + "$" + (inicial_total).toLocaleString('en', {minimumFractionDigits: 2}) + "</td><td>" + "$" + (impuestos_total).toLocaleString('en', {minimumFractionDigits: 2}) + "</td><td id='final_total'>" + "$" + (final_total).toLocaleString('en', {minimumFractionDigits: 2}) + "</td></tr>";
 
 }
 
 function formSubmit(){
+    //Si se supera el maximo de 10 compras en el sessionStorage no se ejecutan las funcinoes
     if (sessionStorage.length >= 10) {
         Toastify({
             text: "Máximo de compras alcanzado",
@@ -161,3 +154,21 @@ document.getElementById("btn_restablecer").addEventListener("click", () => {
 window.addEventListener("load", (event) => {
     sessionStorage.length == 0 ? changeDisplay('lista_container', 'none') : changeDisplay('lista_container', 'flex'); completeTable();
 });
+
+// Se consigue el valor actual de dolar en pesos mediante una api, y se transforma el string obtenido a float
+const conseguirValorDolar = async () =>{
+    const resp = await fetch("https://www.dolarsi.com/api/api.php?type=valoresprincipales");
+    const data = await resp.json();
+    let valor_dolar = data[0].casa.venta;
+    valor_dolar = parseFloat(valor_dolar.replace(',','.'));
+    return valor_dolar;
+}
+
+// Se asigna el valor obtenido con conseguirValorDolar a la variable global valor_dolar, usada en la funcion conversor
+let valor_dolar;
+setTimeout(async ()=>{valor_dolar = await conseguirValorDolar();},0);
+
+function conversor(precio){
+    // Devuelve el valor del precio en AR$
+    return (precio * valor_dolar);
+}
